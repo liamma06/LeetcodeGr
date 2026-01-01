@@ -4,6 +4,8 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+#IMPROTANT LESSON: SELF referenes to the the class so when you call dfs it says within itsefl(class) use this function dfs
 class Solution:
     def dfs(self,node,leaves):
         if node is None:
@@ -24,6 +26,4 @@ class Solution:
         self.dfs(root1,leaves1)                    
         self.dfs(root2,leaves2)
         return leaves1 == leaves2
-
-
-
+        
