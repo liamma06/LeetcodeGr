@@ -12,6 +12,7 @@ class Solution:
         #Python lets you modify mutable objects (like lists) inside nested functions
         count = [0]
 
+        #didn't know you can define a funciton inside a function good to know 
         def dfs(node,curMax):
             if node is None:
                 return
