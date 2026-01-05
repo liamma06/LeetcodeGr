@@ -15,6 +15,7 @@ class Solution:
             if node is None:
                 return 
 
+            #whole idea is to bascially just check if the next spot is available if not just reset back to 1 otherwise just increment
             if node.left is not None:
                 if direction == "right":
                     newLen = currSum+1
