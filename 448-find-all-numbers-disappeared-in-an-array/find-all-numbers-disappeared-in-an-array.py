@@ -4,7 +4,7 @@ class Solution:
         result = []
         
         for i in range(1, len(nums) + 1):
-            if i not in num_set: # This is now O(1) instead of O(n)
+            if i not in num_set: 
                 result.append(i)
                 
         return result
