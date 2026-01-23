@@ -10,7 +10,8 @@ class Solution:
                 continue
 
             visited.add(room)
-
+            
+            #add all keys and when loop through check if all is already visisted 
             for key in rooms[room]:
                 queue.append(key)
 
