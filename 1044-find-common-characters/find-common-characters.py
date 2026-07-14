@@ -2,33 +2,39 @@ class Solution:
     def commonChars(self, words: List[str]) -> List[str]:
         result = {} 
 
-        #need to load the inital one 
+        #load in first word as the base case 
         for char in words[0]:
             result[char] = result.get(char, 0 ) + 1 
 
-        #we now have freq map or each character 
-        #lets check if the other words have the same characters 
+        '''
+            We now need to go through every word after the first one and bascially check if it has similar characters 
+            - hashmap of each 
+            - check if both have it and take the minimum 
+            -otherwise just remove 
+        '''
 
         for word in words[1:]:
-            current = {} #map for the current word 
+            current = {} #hashmap for the current word 
 
-            #freq for each char in the current word 
             for char in word:
                 current[char] = current.get(char,0) + 1 
 
-            #we want to see if there is a match with the inital mapping to this word frequency mappings 
-            for char in list(result): 
-                if char in current:
-                    result[char] = min(result[char], current[char]) # take the min because what both of them have not just one 
+            #go through the result mappings 
+            for char in list(result):
+                if char in current: #if that char is inside current mapping 
+                    result[char] = min (current[char],result[char]) # take the least of either
                 else:
-                    result[char] = 0 
+                    result[char] = 0 # remove bascially
 
-        final = []
+        ans = [] 
 
-        for char, freq in result.items(): #depending on freq we want that many inside the final answer. 
-            for i in range(freq):
-                final.append(char)
+        #loop through the final list 
+        for key, freq in result.items():
+            for i in range(freq): #repeat number of times into the ans 
+                ans.append(key)
 
-        return final 
+        return ans
+
             
+        
             
