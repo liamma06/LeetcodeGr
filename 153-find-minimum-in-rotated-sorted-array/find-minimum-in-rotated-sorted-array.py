@@ -10,13 +10,14 @@ class Solution:
         while left < right:
             mid = (left + right) // 2 
 
-            #rotation points within
+            
             if (nums[mid] > nums[right]):
-                #can't be mid need rotation point 
+                # mid is on the "high" side before the rotation point, so the minimum must be to the right of mid
+                #shift over from mid since can't be 
                 left = mid + 1
-            #not within but could be mid still  
+
             elif (nums[mid] < nums[right]):
-                #keep mid since it could 
+                # mid is already past the rotation point (or IS the minimum), so keep mid in the search space and shrink from the right
                 right = mid 
 
         return nums[left]
