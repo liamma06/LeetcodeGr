@@ -1,1 +1,1 @@
-<h2>find-the-duplicate-number Notes</h2><hr>[ Time taken: 2hrs 46m 52s ]
+<h2>find-the-duplicate-number Notes</h2><hr>[ Time taken: 50s ]
