@@ -6,21 +6,24 @@
 #         self.right = right
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
-        if not root:
-            return 0
+        #root.val is max so far
+        result = self.dfs(root,root.val)
+        return result 
 
-        #Python lets you modify mutable objects (like lists) inside nested functions
-        count = [0]
 
-        #didn't know you can define a funciton inside a function good to know 
-        def dfs(node,curMax):
-            if node is None:
-                return
-            if node.val >= curMax:
-                count[0] += 1
-                curMax = node.val
-            dfs(node.left, curMax )
-            dfs(node.right,curMax)
+    def dfs(self,node, max_so_far):
+        if node is None:
+            return 0 
+        
+        if node.val >= max_so_far:
+            count = 1 #always incrmeent by 1 if greater 
+            new_max = max(max_so_far, node.val) #update
+        else:
+            count = 0 
+            new_max = max_so_far
 
-        dfs(root,root.val)
-        return count[0]
+        left_count = self.dfs(node.left, new_max)
+        right_count = self.dfs(node.right, new_max)
+
+        return count + left_count + right_count #total count of what good
+        
