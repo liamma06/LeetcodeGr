@@ -26,4 +26,23 @@ class Solution:
         right_count = self.dfs(node.right, new_max)
 
         return count + left_count + right_count #total count of what good
+
+    """
+        Using "global" variable 
+        def goodNodes(self, root: TreeNode) -> int:
+            self.count = 0 
+            self.dfs(root, root.val)
+            return self.count
+
+        def dfs(self, node, max_so_far):
+            if node is None:
+                return 
+
+            if node.val >= max_so_far:
+                self.count += 1 
+
+            new_max = max(max_so_far, node.val)
+            self.dfs(node.left, new_max)
+            self.dfs(node.right,new_max)
+    """
         
