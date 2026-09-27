@@ -5,23 +5,31 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-        if not root:
+    def rightSideView(self, root: TreeNode | None) -> list[int]:
+        if root is None:
             return []
 
-        ans = []
-        queue= deque()
-        queue.append(root)
-        while queue:
-            level = []
+        output = [] 
 
-            for i in range(len(queue)):
-                node = queue.popleft()
-                level.append(node.val)
+        q = deque([root])
 
+        while q:
+            #how many elements this level 
+            level_size = len(q) 
+            level_store = [] 
+
+            for _ in range(level_size):
+
+                #take out and store 
+                node = q.popleft()
+                level_store.append(node.val)
+
+                #queue next nodes/level to be checkedd 
                 if node.left:
-                    queue.append(node.left)
+                    q.append(node.left)
                 if node.right:
-                    queue.append(node.right)
-            ans.append(level[-1])
-        return ans 
+                    q.append(node.right)
+
+            #only put in the right most value
+            output.append(level_store[-1])
+        return output 
