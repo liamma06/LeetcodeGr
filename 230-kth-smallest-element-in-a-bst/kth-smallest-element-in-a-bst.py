@@ -17,6 +17,9 @@ class Solution:
         if node is None:
             return 
         
+        if self.answer != None:
+            return 
+        
         #go all the way left 
         self.dfs(node.left)
 
