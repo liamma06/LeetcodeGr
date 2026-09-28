@@ -17,6 +17,7 @@ class Solution:
         if node is None:
             return 
         
+        #leave early 
         if self.answer != None:
             return 
         
