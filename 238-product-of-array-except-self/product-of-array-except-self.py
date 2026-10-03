@@ -27,3 +27,26 @@ class Solution:
         return result
 
         #O(3N) still O(n) possibly recompute on same run like left could have result already inside as left right and multiple directly in
+
+        """
+            left = [0] * len(nums )
+            right = [0] * len(nums)
+            result = [0] * len(nums)
+
+            for i in range(len(nums)):
+                if i == 0:
+                    left[i] = 1
+                else:
+                    left[i] = left[i - 1] * nums[i - 1]
+
+            for i in range(len(nums)- 1, -1 ,-1 ):
+                if i == len(nums) - 1:
+                    right[i] = 1 
+                else:
+                    right[i] = right[i + 1] * nums[i+1]        
+
+                result[i] = left[i] * right[i]
+
+            return result
+
+        """
