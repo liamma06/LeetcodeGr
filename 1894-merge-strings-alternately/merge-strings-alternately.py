@@ -1,11 +1,12 @@
 class Solution:
     def mergeAlternately(self, word1: str, word2: str) -> str:
+        #time is O(m +n) since each value is touched in both words 
+
         least = min(len(word1), len(word2))
 
         word1_array = list(word1)
         word2_array= list(word2)
         result = []
-        final = ""
 
         for i in range(least):
             result.append(word1_array[i])
@@ -19,4 +20,6 @@ class Solution:
         else:
             final = result
         
-        return "".join(final)
+        return "".join(final) 
+
+        #return "".join(final) + word1_array[least:] + word2_array[least:]
