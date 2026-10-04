@@ -13,6 +13,10 @@ class Solution:
             if (right-left + 1) == k :
                 max_vowel = max(window_vowel, max_vowel)
 
+                #early exit 
+                if max_vowel == k:
+                    return max_vowel
+
                 #slide window
                 if s[left] in vowels:
                     window_vowel -= 1 
