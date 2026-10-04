@@ -1,24 +1,30 @@
 class Solution:
     def maxOperations(self, nums: List[int], k: int) -> int:
-        #sort num array so easily can test biggest with smallest!if too big move right inward, too small move left
+        freq  = {}
+        result = 0 
 
-        L = 0 
-        R = len(nums)-1 
-        output = 0
+        #frequency map for O(1) search up
+        for num in nums:
+            if num in freq:
+                freq[num] += 1 
+            else:
+                freq[num] = 1 
 
-        if len(nums) ==0:
-            return output
+        #send look for look up 
+        for num in nums:
+            #make sure the current still available
+            if freq[num] > 0:
+                
+                freq[num] -= 1 #remove for now in the case of duplicates (look == num ) make sure enough space 
 
-        new_nums = sorted(nums)
+                look = k - num
 
-        while L < R:
-            if new_nums[L] + new_nums[R] == k:
-                output += 1 
-                #forogt to increment inward after right
-                L+=1 
-                R-=1
-            elif  new_nums[L]+new_nums[R] > k:
-                R-=1
-            elif new_nums[L]+new_nums[R] < k:
-                L += 1
-        return output  
+                #remove found matching pair. 
+                if (look in freq) and freq[look] > 0 :
+                    freq[look] -= 1 
+                    result += 1
+                else:
+                    freq[num] += 1 
+
+        return result 
+        
