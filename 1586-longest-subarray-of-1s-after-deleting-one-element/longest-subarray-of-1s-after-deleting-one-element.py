@@ -1,28 +1,22 @@
 class Solution:
-    def longestSubarray(self, nums: List[int]) -> int:
+    def longestSubarray(self, nums: list[int]) -> int:
         max_ones = 0
+        zeros = 0
         left = 0
-        curr = 0
-        num_of_zeros= 0
-        zero = False
 
-        for i in range(len(nums)):
-            if nums[i] == 1:
-                curr+=1
-            elif nums[i] == 0:
-                num_of_zeros += 1
-                zero = True
-            while num_of_zeros > 1:
-                if nums[left] == 0:
-                    num_of_zeros -= 1
-                elif nums[left] == 1:
-                    curr -= 1
-                left+=1
-            max_ones = max(curr,max_ones)
+        k = 1
 
-            if zero == False:
-                max_ones -= 1
+        for right in range(len(nums)):
+            if nums[right] == 0:
+                zeros += 1 
 
-        return max_ones
+            while zeros > k: 
+                if nums[left] == 0: 
+                    zeros -= 1 
                 
-                
+                left += 1
+
+            #no including hte zero(since not flipped)
+            max_ones = max(right - left, max_ones)
+
+        return max_ones #O(n) different approach keeping track of zeros instead of 1's
