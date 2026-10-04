@@ -1,6 +1,6 @@
 class Solution:
     def maxVowels(self, s: str, k: int) -> int:
-        vowels = "aeiou"
+        vowels ={"a","e","i","o","u"}
         max_vowel = float('-inf')  
         window_vowel = 0        
 
@@ -19,3 +19,5 @@ class Solution:
                 left += 1 
             
         return max_vowel
+
+        #O(n) 
