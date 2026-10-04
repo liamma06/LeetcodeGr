@@ -1,36 +1,23 @@
 class Solution:
-    def findMaxAverage(self, nums: List[int], k: int) -> float:
-        """
-        maxAvg = float('-inf')  
-        num_of_shifts = len(nums) - k +1
-        
+    def findMaxAverage(self, nums: list[int], k: int) -> float:
+        left = 0
+        max_avg = float('-inf') 
+        window_sum = 0
 
-        #do a sub array of k and shift one each until it reaches the end 
-        
-        for i in range(num_of_shifts):
-            sumavg = 0 
-            for j in range(k):
-                sumavg += nums[j+i]
-            maxAvg = max(maxAvg,sumavg/k)
-        
-        return maxAvg
-        """
+        for right in range(len(nums)):
+            window_sum += nums[right]
 
-        nums_of_shifts = len(nums) - k + 1
+            #zero index
+            if (right - left + 1) == k:
 
-        sub_sum = 0
+                #compute avg & store it 
+                avg = window_sum / k 
+                max_avg = max( avg, max_avg)
 
-        for i in range(k):
-            sub_sum += nums[i]
-        maxAvg = sub_sum/k
-
-        for i in range(1,nums_of_shifts):
-            sub_sum -= nums[i - 1]
-            sub_sum += nums[i+k-1]
-            maxAvg = max(maxAvg, sub_sum/k)
-        return maxAvg
+                #iterate 
+                window_sum -= nums[left]
+                left += 1  
+        return max_avg 
 
             
-
-        
             
