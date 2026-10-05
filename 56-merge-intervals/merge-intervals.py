@@ -3,9 +3,9 @@ class Solution:
         result = []
 
         #need to sort first 
-        intervals.sort(key=lambda x: x[0])
+        intervals.sort(key=lambda x: x[0]) #O(nlog n) sort within
 
-        for i in range(len(intervals)):
+        for i in range(len(intervals)): #O(n)
 
             #intial just append in 
             if i == 0 :
@@ -15,7 +15,7 @@ class Solution:
             #compare to the last thing inside 
             prev_intvl = result[-1]
 
-            #compare first of second is within last of first or visa versa 
+            #compare first of second is within last of first  
             curr_intvl = intervals[i]
 
             if (curr_intvl[0] <= prev_intvl[-1]):
@@ -31,7 +31,7 @@ class Solution:
 
         return result
 
-                
+        #O(nlog n)
 
 
         """
