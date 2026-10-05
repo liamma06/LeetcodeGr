@@ -1,18 +1,46 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        seen = {} 
+        if len(s) == 0 :
+            return 0
+
+        win_freq = {} 
+        longest = float("-inf")
+        curr_length =  0
+
         left = 0 
-        max_len = 0
 
         for right in range(len(s)):
-            char = s[right]
+            letter = s[right]
 
-            #if seen and the index is within the range 
-            if char in seen and seen[char] >= left:
-                left = seen[char]+1
+            if letter not in win_freq:
+                win_freq[letter] = 1
+
+            elif letter in win_freq:
+                win_freq[letter] += 1
+
+                while win_freq[letter] > 1:
+                    left_letter = s[left]
+                    win_freq[left_letter] -= 1 
+                    left += 1 
+
+            curr_length = right - left + 1 
+            longest = max(curr_length, longest)
+
+        return longest 
+
+        """
+            abc a bcbb 
+             L  R
+
+            win_freq = {
+                a : 1 
+                b : 1 
+                c : 1 
+            }
+
+            curr_length = 3
+
+            longest = 3
+        """
+
             
-            seen[char] = right 
-
-            max_len = max(max_len, right-left + 1)
-        
-        return max_len
