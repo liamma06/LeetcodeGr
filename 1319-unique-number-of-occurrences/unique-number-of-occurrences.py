@@ -1,17 +1,18 @@
 class Solution:
-    def uniqueOccurrences(self, arr: List[int]) -> bool:
-        hashmap = {}
+    def uniqueOccurrences(self, arr: list[int]) -> bool:
+        freq = {}
+        vals = {}
 
         for num in arr:
-            if num in hashmap:
-                hashmap[num] += 1 
+            if num in freq:
+                freq[num] += 1 
             else:
-                hashmap[num] = 1
+                freq[num] = 1 
 
-        dup = [] 
-
-        for val in hashmap:
-            if hashmap[val] in dup:
+        for k,v in freq.items():
+            if v in vals:
                 return False
-            dup.append(hashmap[val])
+            else: 
+                vals[v] = 1
+
         return True
