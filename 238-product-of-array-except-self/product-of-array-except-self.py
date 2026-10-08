@@ -24,13 +24,6 @@ class Solution:
         right = [0] * length
         result = [0] * length
 
-        #O(n) 
-        for i in range(length):
-            if i == 0:
-                left[i] = 1
-                continue
-            left[i] = left[i - 1] * nums[i - 1]
-
         #O(n)
         #range(start, stop, step)
         for i in range(length - 1, -1 ,-1):
@@ -39,11 +32,15 @@ class Solution:
                 continue
             right[i] = right[ i + 1] * nums[i + 1]
 
-        #O(n)
+        #O(n) 
         for i in range(length):
-            result[i] = left[i] * right[i] 
+            if i == 0:
+                left[i] = 1
+            else:
+                left[i] = left[i - 1] * nums[i - 1]
+            result[i] = left[i] * right[i] # do the results directly inside
 
-        return result 
+        return result
 
         #overall is O(3n) which is still O(n) 
 
