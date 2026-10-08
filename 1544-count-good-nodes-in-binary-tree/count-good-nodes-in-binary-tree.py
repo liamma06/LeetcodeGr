@@ -4,45 +4,40 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+
+"""
+    curr node: 3 
+    count = 1
+    max = 3 
+        node.right = 4
+        count = 1
+        max = 4  
+            node.right = 5
+            count = 2 
+            max = 5
+                node.right = None
+                count = 0
+                max = 5
+                node.left = 1
+
+"""
+
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
-        #root.val is max so far
-        result = self.dfs(root,root.val)
-        return result 
-
-
-    def dfs(self,node, max_so_far):
+        return self.dfs(root, float("-inf"))
+        
+    def dfs(self, node, max_so_far) -> int:
         if node is None:
             return 0 
-        
+
+        #we want to return some sort of count 
+        count = 0
         if node.val >= max_so_far:
-            count = 1 #always incrmeent by 1 if greater 
-            new_max = max(max_so_far, node.val) #update
-        else:
-            count = 0 
-            new_max = max_so_far
+            count += 1 
+            max_so_far = node.val
 
-        left_count = self.dfs(node.left, new_max)
-        right_count = self.dfs(node.right, new_max)
+        count += self.dfs(node.right,max_so_far)
+        count += self.dfs(node.left, max_so_far)
 
-        return count + left_count + right_count #total count of what good
-
-    """
-        Using "global" variable 
-        def goodNodes(self, root: TreeNode) -> int:
-            self.count = 0 
-            self.dfs(root, root.val)
-            return self.count
-
-        def dfs(self, node, max_so_far):
-            if node is None:
-                return 
-
-            if node.val >= max_so_far:
-                self.count += 1 
-
-            new_max = max(max_so_far, node.val)
-            self.dfs(node.left, new_max)
-            self.dfs(node.right,new_max)
-    """
-        
+        return count 
