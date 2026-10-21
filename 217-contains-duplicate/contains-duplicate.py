@@ -1,12 +1,11 @@
 class Solution:
-    def containsDuplicate(self, nums: List[int]) -> bool:
-        mappings = {}
+    def containsDuplicate(self, nums: list[int]) -> bool:
+        n = set()
 
         for num in nums:
-            mappings[num] = mappings.get(num,0) + 1 
-            if mappings[num] >= 2:
-                return True
+            if num in n :
+                return True 
+            else:
+                n.add(num)
 
-        return False 
-        
-        
+        return False
