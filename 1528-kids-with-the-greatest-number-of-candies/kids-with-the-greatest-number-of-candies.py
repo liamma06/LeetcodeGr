@@ -4,8 +4,9 @@ class Solution:
         result = []
 
         for candy in candies:
-            max_candy = max(candy, max_candy)
-
+            if max_candy < candy:
+                max_candy = candy
+        
         for candy in candies:
             if (candy + extraCandies) >= max_candy:
                 result.append(True)
